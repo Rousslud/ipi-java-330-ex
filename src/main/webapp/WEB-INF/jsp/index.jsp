@@ -5,12 +5,12 @@
 <div class="container">
     <div class="jumbotron">
         <h1>Bienvenue dans l'interface de gestion des <span>${nbEmployes}</span> employés !</h1>
-        <p>Cette application web est paramétrée pour communiquer avec une API REST accessible à l'adresse <code>http://localhost:5367</code>.</p>
-        <p>Il est nécessaire de développer les services webs nécessaires pour que cette application fonctionne. Voici l'ensemble des fonctionnalités :</p>
+        <p>Cette application web est paramétrée pour récupérer les données d'une base <em>entreprise</em> sur le serveur MySQL situé à <code>http://localhost:3306</code>.</p>
+        <p>Il est nécessaire de développer les contrôleurs et de compléter les JSP existantes. Voici l'ensemble des fonctionnalités :</p>
         <ul class="list-group">
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">1 - Compter le nombre d'employés</h4>
-                <p class="list-group-item-text">A côté du lien <em>Liste des employés</em>, on doit voir apparaître le nombre d'employés. L'appel qui est effectué est <code>GET /employes/count</code>.</p>
+                <p class="list-group-item-text">Dans le titre ci-dessus, on doit voir apparaître le nombre d'employés : <em>Bienvenue dans l'interface de gestion des X employés</em>.</p>
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">2 - Afficher un employé</h4>
@@ -50,7 +50,8 @@
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">11 - Ajouter ou supprimer un manager à un technicien</h4>
-                <p class="list-group-item-text">En cliquant <a href="/employes/576">ici</a> ou en consultant le détail du technicien <em>T00572</em> (id 576), il est possible de supprimer (GET /techniciens/576/manager/remove) son manager avec le bouton <span class="glyphicon glyphicon-remove"></span> et d'ajouter (Appel API <code>GET /techniciens/576/manager/M00528/add</code>) un manager en renseignant son matricule (dans l'exemple M00528) et en cliquant sur le bouton <span class="glyphicon glyphicon-plus"></span>.</p>
+                <p class="list-group-item-text">En cliquant <a href="/employes/576">ici</a> ou en consultant le détail du technicien <em>T00572</em> (id 576), il est possible de supprimer (<code>GET /techniciens/576/manager/remove</code>) son manager avec le bouton <span class="glyphicon glyphicon-remove"></span> et d'ajouter (Appel API <code>GET /techniciens/576/manager/M00528/add</code>) un manager en renseignant son matricule (dans l'exemple M00528) et en cliquant sur le bouton <span class="glyphicon glyphicon-plus"></span>.
+                </p>
             </li>
         </ul>
     </div>

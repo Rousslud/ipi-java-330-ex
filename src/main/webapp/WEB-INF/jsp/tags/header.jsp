@@ -33,9 +33,12 @@
         </div>
     </div>
 </nav>
-<% if (request.getParameter("success") != null){ %>
+<% if(request.getParameter("success") != null) {
+    pageContext.setAttribute("success", request.getParameter("success"));
+}%>
+<% if (pageContext.findAttribute("success") != null){ %>
 <div class="alert alert-success alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <%=request.getParameter("success")%>
+    ${success}
 </div>
 <% } %>

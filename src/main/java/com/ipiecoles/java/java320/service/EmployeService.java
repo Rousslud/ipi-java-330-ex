@@ -35,7 +35,7 @@ public class EmployeService {
         return employeRepository.save(e);
     }
 
-    public <T extends Employe> T updateEmploye(Long id, T employe) {
+    public <T extends Employe> T updateEmploye(T employe) {
         return employeRepository.save(employe);
     }
 

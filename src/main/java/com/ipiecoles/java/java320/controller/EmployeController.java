@@ -28,15 +28,18 @@ public class EmployeController {
     @Autowired
     private EmployeService employeService;
 
-    @GetMapping(value = "", params = "matricule")
+    @RequestMapping(value = "", params = "matricule", method = RequestMethod.GET)
     public RedirectView findByMatricule(@RequestParam(name = "matricule") String matricule) {
             Employe employe = this.employeService.findMyMatricule(matricule);
             return new RedirectView("/employes/" + employe.getId());
     }
 
-    @GetMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String detail(@PathVariable(name = "id") Long id, Map<String, Object> model) {
         Employe employe = this.employeService.findById(id);
+        //Si l'employé est un manager, on récupère également son équipe
+        //Si on n'utilise pas la méthode findOneWithEquipeById, on va avoir une LazyLoadingException lorsqu'on va
+        //récupérer l'équipe.
         if(employe != null && employe instanceof Manager){
             employe = managerService.findOneWithEquipeById(id);
         }
@@ -49,27 +52,25 @@ public class EmployeController {
         return "employes/detail";
     }
 
-    @GetMapping("/{id}/delete")
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public RedirectView deleteEmploye(@PathVariable(name = "id") Long id, Map<String, Object> model, RedirectAttributes attributes) {
         this.employeService.deleteEmploye(id);
-        attributes.addAttribute("page", 0);
-        attributes.addAttribute("size", 10);
-        attributes.addAttribute("sortingProperty", "matricule");
-        attributes.addAttribute("sortDirection", "ASC");
+        attributes.addAttribute("success", "Suppression de l'employée effectuée !");
+        //Une fois supprimé, on redirige l'utilisateur sur la liste des employés
         return new RedirectView("/employes");
     }
 
-    @GetMapping("/new/manager")
+    @RequestMapping(value = "/new/manager", method = RequestMethod.GET)
     public String createManager(Map<String, Object> model) {
         return createEmploye(model, new Manager());
     }
 
-    @GetMapping("/new/commercial")
+    @RequestMapping(value = "/new/commercial", method = RequestMethod.GET)
     public String createCommercial(Map<String, Object> model) {
         return createEmploye(model, new Commercial());
     }
 
-    @GetMapping("/new/technicien")
+    @RequestMapping(value = "/new/technicien", method = RequestMethod.GET)
     public String createTechnicien(Map<String, Object> model) {
         return createEmploye(model, new Technicien());
     }
@@ -79,18 +80,13 @@ public class EmployeController {
         return "employes/detail";
     }
 
-    @PostMapping("/{id}")
-    public <T extends Employe> RedirectView save(@PathVariable(name = "id") Long id, T employe, Map<String, Object> model, RedirectAttributes attributes) {
-        if(employe != null){
-            employe = this.employeService.updateEmploye(id, employe);
-        }
-        model.put("model", employe);
-        attributes.addAttribute("success", "Modifications enregistrées !");
-        return new RedirectView("/employes/" + id);
-    }
-
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String findAll(@RequestParam("page") Integer page, @RequestParam("size") Integer size, @RequestParam("sortDirection") String sortDirection, @RequestParam("sortProperty") String sortProperty, Map<String, Object> model){
+    public String findAll(
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "10") Integer size,
+            @RequestParam(value = "sortDirection", defaultValue = "ASC") String sortDirection,
+            @RequestParam(value = "sortProperty", defaultValue = "matricule") String sortProperty,
+            Map<String, Object> model){
         Page<Employe> pageEmploye = employeService.findAllEmployes(page, size, sortProperty, sortDirection);
         model.put("model",pageEmploye);
         model.put("size", size);

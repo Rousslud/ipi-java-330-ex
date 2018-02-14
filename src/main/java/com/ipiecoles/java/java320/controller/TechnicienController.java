@@ -5,11 +5,14 @@ import com.ipiecoles.java.java320.model.Technicien;
 import com.ipiecoles.java.java320.service.EmployeService;
 import com.ipiecoles.java.java320.service.TechnicienService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Map;
 
 @RequestMapping("/techniciens")
@@ -22,48 +25,54 @@ public class TechnicienController {
     @Autowired
     private EmployeService employeService;
 
-
-    @PostMapping("/{id}")
-    public RedirectView save(@PathVariable(name = "id") Long id, Technicien employe, Map<String, Object> model, RedirectAttributes attributes) {
+    /**
+     *
+     * @param id
+     * @param employe Dans le cas du media type application form urlencoded, on ne met pas l'annotation
+     *                @RequestBody sur employe
+     * @param model
+     * @param attributes
+     * @return
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String save(@PathVariable(name = "id") Long id, Technicien employe, Map<String, Object> model, RedirectAttributes attributes) {
         if(employe != null){
-            employe = this.employeService.updateEmploye(id, employe);
+            employe = this.employeService.updateEmploye(employe);
         }
         model.put("model", employe);
-        attributes.addAttribute("success", "Modifications enregistrées !");
-
-        return new RedirectView("/employes/" + id);
+        model.put("success", "Modifications enregistrées !");
+        return "employes/detail";
     }
 
-    @PostMapping("/save")
-    public RedirectView saveNew(Technicien employe, Map<String, Object> model, RedirectAttributes attributes) {
+    /**
+     *
+     * @param employe Dans le cas du media type application form urlencoded, on ne met pas l'annotation
+     *                @RequestBody sur employe
+     * @param model
+     * @param attributes
+     * @return
+     */
+    @RequestMapping( value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String saveNew(Technicien employe, Map<String, Object> model, RedirectAttributes attributes) {
         employe = this.employeService.creerEmploye(employe);
         model.put("model", employe);
-        attributes.addAttribute("success", "Création du commercial enregistrée !");
-
-        return new RedirectView("/employes/" + employe.getId());
+        model.put("success", "Création du technicien enregistrée !");
+        return "/employes/detail";
     }
 
-    @GetMapping("/{id}/manager/{idManager}/delete")
-    public RedirectView removeManager(@PathVariable(name = "id") Long id, @PathVariable(name = "idManager") Long idManager){
-        Technicien technicien = (Technicien) employeService.findById(id);
-        if(technicien.getManager() != null && technicien.getManager().getId().equals(idManager)){
-            technicien.setManager(null);
-            this.employeService.updateEmploye(id, technicien);
-        }
-        else {
-            //Erreur
-        }
-
-        return new RedirectView("/employes/" + id);
+    @RequestMapping(value = "/{id}/manager/delete", method = RequestMethod.GET)
+    public String removeManager(@PathVariable(name = "id") Long id, Map<String, Object> model){
+        Technicien technicien = technicienService.deleteManager(id);
+        model.put("model", technicien);
+        model.put("success", "Suppression du manager effectuée !");
+        return "/employes/detail";
     }
 
-    @GetMapping("/{id}/manager/add")
-    public RedirectView addManager(@PathVariable(name = "id") Long id, @RequestParam(name = "matricule") String matricule){
-        Technicien technicien = (Technicien) employeService.findById(id);
-        Manager manager = (Manager) employeService.findMyMatricule(matricule);
-        technicien.setManager(manager);
-        this.employeService.updateEmploye(id, technicien);
-
-        return new RedirectView("/employes/" + id);
+    @RequestMapping(value = "/{id}/manager/add", method = RequestMethod.GET)
+    public String addManager(@PathVariable(name = "id") Long id, @RequestParam(name = "matricule") String matricule, Map<String, Object> model){
+        Technicien technicien = this.technicienService.addManager(id, matricule);
+        model.put("model", technicien);
+        model.put("success", "Ajout du manager " + matricule + " effectué !");
+        return "employes/detail";
     }
 }

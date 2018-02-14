@@ -13,7 +13,7 @@
     <h2>Détail du ${model.className} ${model.matricule}</h2>
 
     <div class="row">
-        <form id="saveForm" action="/<%= employe.getClassName().toLowerCase() + "s"%>/<%= employe.getId() == null ? "save" : employe.getId() %>" method="post">
+        <form id="saveForm" action="/<%= employe.getClassName().toLowerCase() + "s"%>/${model.id}" method="post">
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="nom">Nom</label>
@@ -119,7 +119,7 @@
                         </ul>
                     </div>
                     <div class="col-lg-2">
-                        <li class="list-group-item"><a href="/techniciens/${model.id}/manager/${model.manager.id}/delete"><span class="glyphicon glyphicon-remove"></span></a></li>
+                        <li class="list-group-item"><a href="/techniciens/${model.id}/manager/delete"><span class="glyphicon glyphicon-remove"></span></a></li>
                     </div>
                     <% } else { %>
                     <form action="/techniciens/${model.id}/manager/add" method="get">
