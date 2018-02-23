@@ -6,7 +6,7 @@
 
 <div class="container">
     <div class="jumbotron">
-        <h1>Bienvenue dans l'interface de gestion des <span></span> employés !</h1>
+        <h1>Bienvenue dans l'interface de gestion des ${nbEmployes} employés !</h1>
         <p>Cette application web est paramétrée pour communiquer avec une API REST accessible à l'adresse <code>http://localhost:5367</code>.</p>
         <p>Il est nécessaire de développer les services webs nécessaires pour que cette application fonctionne. Voici l'ensemble des fonctionnalités :</p>
         <ul class="list-group">
@@ -40,11 +40,11 @@
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">8 - Création, modification et suppression d'un Technicien</h4>
-                <p class="list-group-item-text">Faire la mÃªme chose que les trois questions précédentes pour les techniciens. Le chemin de l'API est <code>/techniciens</code>.</p>
+                <p class="list-group-item-text">Faire la même chose que les trois questions précédentes pour les techniciens. Le chemin de l'API est <code>/techniciens</code>.</p>
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">9 - Création, modification et suppression d'un Manager</h4>
-                <p class="list-group-item-text">Faire la mÃªme chose que la question précédente pour les managers. Le chemin de l'API est <code>/managers</code>.</p>
+                <p class="list-group-item-text">Faire la même chose que la question précédente pour les managers. Le chemin de l'API est <code>/managers</code>.</p>
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">10 - Ajouter ou supprimer un technicien dans l'équipe d'un manager</h4>
