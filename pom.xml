@@ -19,10 +19,12 @@
 
     <dependencies>
 
+		<!--  Pour les servlets spring  -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--  Pour faire du hibernate   -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -31,6 +33,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <!-- Module spécial pour la gestion du temps et notamment les calculs avec des dates   -->
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
@@ -60,6 +63,7 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>compile</scope>
         </dependency>
+        <!--  Pour compiler les JSP   -->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
