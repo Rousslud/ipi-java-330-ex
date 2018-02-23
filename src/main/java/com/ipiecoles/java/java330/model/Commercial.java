@@ -1,4 +1,4 @@
-package com.ipiecoles.java.java320.model;
+package com.ipiecoles.java.java330.model;
 
 import org.joda.time.LocalDate;
 

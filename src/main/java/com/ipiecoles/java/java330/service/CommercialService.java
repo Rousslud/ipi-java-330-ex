@@ -1,7 +1,7 @@
-package com.ipiecoles.java.java320.service;
+package com.ipiecoles.java.java330.service;
 
-import com.ipiecoles.java.java320.model.Commercial;
-import com.ipiecoles.java.java320.repository.CommercialRepository;
+import com.ipiecoles.java.java330.model.Commercial;
+import com.ipiecoles.java.java330.repository.CommercialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

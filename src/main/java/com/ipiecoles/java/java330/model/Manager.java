@@ -1,4 +1,4 @@
-package com.ipiecoles.java.java320.model;
+package com.ipiecoles.java.java330.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

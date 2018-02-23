@@ -1,7 +1,7 @@
-package com.ipiecoles.java.java320.service;
+package com.ipiecoles.java.java330.service;
 
-import com.ipiecoles.java.java320.model.Employe;
-import com.ipiecoles.java.java320.repository.EmployeRepository;
+import com.ipiecoles.java.java330.model.Employe;
+import com.ipiecoles.java.java330.repository.EmployeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
