@@ -1,3 +1,6 @@
+<%@ include file="tags/header.jsp" %>
+<!-- Permet de rajouter un header automatiquement  -->
+
 <div class="container">
     <div class="jumbotron">
         <h1>Bienvenue dans l'interface de gestion des <span></span> employés !</h1>
@@ -52,3 +55,5 @@
     </div>
 </div>
 
+<!-- Permet de rajouter un footer automatiquement  -->
+<%@ include file="tags/footer.jsp" %>
