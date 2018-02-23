@@ -1,3 +1,6 @@
+<!-- Corriger les problèmes liés à l'encoding -->
+<%@ page contentType="text/html;charset=UTF-8" %>
+
 <%@ include file="tags/header.jsp" %>
 <!-- Permet de rajouter un header automatiquement  -->
 
@@ -37,11 +40,11 @@
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">8 - Création, modification et suppression d'un Technicien</h4>
-                <p class="list-group-item-text">Faire la même chose que les trois questions précédentes pour les techniciens. Le chemin de l'API est <code>/techniciens</code>.</p>
+                <p class="list-group-item-text">Faire la mÃªme chose que les trois questions précédentes pour les techniciens. Le chemin de l'API est <code>/techniciens</code>.</p>
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">9 - Création, modification et suppression d'un Manager</h4>
-                <p class="list-group-item-text">Faire la même chose que la question précédente pour les managers. Le chemin de l'API est <code>/managers</code>.</p>
+                <p class="list-group-item-text">Faire la mÃªme chose que la question précédente pour les managers. Le chemin de l'API est <code>/managers</code>.</p>
             </li>
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">10 - Ajouter ou supprimer un technicien dans l'équipe d'un manager</h4>
