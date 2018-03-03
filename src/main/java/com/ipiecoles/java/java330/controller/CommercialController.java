@@ -1,6 +1,10 @@
 package com.ipiecoles.java.java330.controller;
 
+import com.ipiecoles.java.java330.model.Commercial;
 import com.ipiecoles.java.java330.service.CommercialService;
+
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -11,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/commercials")
+@RequestMapping("/commercial")
 public class CommercialController {
 
     @Autowired
@@ -23,8 +27,12 @@ public class CommercialController {
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = MediaType.TEXT_HTML_VALUE
     )
-    public String enregistre(@RequestParam("id") Long id, @RequestBody MultiValueMap<String,String> map) {
+    public String enregistre(@RequestParam("id") Long id, @RequestBody MultiValueMap<String,String> map, Map<String,Object> model) {
 
-        return null;
+    	Commercial com = commercialService.findById(id);
+    	com.setSalaire(new Double(map.getFirst("salaire")));
+    	commercialService.updateEmploye(id,com);
+    	model.put("employe", com);
+    	return "employes/detail";
     }
 }
