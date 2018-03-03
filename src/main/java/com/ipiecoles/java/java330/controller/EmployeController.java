@@ -49,9 +49,12 @@ public class EmployeController {
 			 @RequestParam("page") Integer page,
 			 @RequestParam("size") Integer size,
 			 @RequestParam("sortProperty") String sortProperty,
-			 @RequestParam("sortDirection") String sortDirections) {
-		 Page<Employe> pagin = employeService.findAllEmployes(page, size, sortProperty, sortDirections);
+			 @RequestParam("sortDirection") String sortDirection) {
+		 Page<Employe> pagin = employeService.findAllEmployes(page, size, sortProperty, sortDirection);
 		 model.put("pagination", pagin);
+		 model.put("listePagination", pagin.getContent());
+		 model.put("hasNext", pagin.hasNext());
+		 model.put("hasPrevious", pagin.hasPrevious());
 		 return "employes/liste";
 		 }
 

@@ -1,3 +1,8 @@
+<%@ page import="org.springframework.data.domain.Page" %>
+<%@ page import="com.ipiecoles.java.java330.model.Employe" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file ="../tags/header.jsp" %>
 <div class="container">
@@ -31,12 +36,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <th scope="row">Matricule</th>
-                        <td>Nom</td>
-                        <td>Prénom</td>
-                        <td><a href="">Détail</a></td>
-                    </tr>
+                    <c:forEach var="empl" items="${listePagination}">
+                        <tr>
+                            <th scope="row">${empl.matricule}</th>
+                            <td>${empl.nom}</td>
+                            <td>${empl.prenom}</td>
+                            <td><a href="/employes/${empl.id}">Détails</a></td>
+                        </tr>
+                    </c:forEach>
                 </tbody>
             </table>
             <div class="row">
