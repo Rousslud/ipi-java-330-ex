@@ -76,10 +76,10 @@ public class EmployeController {
             //on initialise des valeurs nécessaires pour appeler la méthode afficheListeEmployes
             attributes.addAttribute("page", 0);
             attributes.addAttribute("size", 10);
-            attributes.addAttribute("sortingProperty", "matricule");
+            attributes.addAttribute("sortProperty", "matricule");
             attributes.addAttribute("sortDirection", "ASC");
             //message qui sera affichée dans le header
-            attributes.addAttribute("message", "suppression réussie");
+            attributes.addAttribute("success", "suppression réussie");
     
             return new RedirectView("/employes");
         }
