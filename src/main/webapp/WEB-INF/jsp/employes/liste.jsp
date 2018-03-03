@@ -53,21 +53,35 @@
                 </div>
                 <div class="col-lg-6">
                     <ul class="pagination">
-                        <li class= "disabled">
-                            <c:if test="${hasPrevious}">
-                                <a href="/employes?page=${previousPage}&size=${sizeActuel}&sortProperty=${sortPropertyActuel}&sortDirection=${sortDirectionActuel}">
-                                    &laquo;
-                                </a>
-                            </c:if>
-                        </li>
+                        <c:choose>
+                            <c:when test="${!hasPrevious}">
+                                <li>
+                                    <a href ="">&laquo;</a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li>
+                                    <a href="/employes?page=${previousPage}&size=${sizeActuel}&sortProperty=${sortPropertyActuel}&sortDirection=${sortDirectionActuel}"}>
+                                        &laquo;
+                                    </a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
                         <li><a href="#">Page ${pageActuel}</a></li>
-                        <li>
-                            <c:if test="${hasNext}">
-                                <a href="/employes?page=${nextPage}&size=${sizeActuel}&sortProperty=${sortPropertyActuel}&sortDirection=${sortDirectionActuel}">
-                                    &raquo;
-                                </a>
-                            </c:if>
-                        </li>
+                        <c:choose>
+                            <c:when test="${!hasNext}">
+                                <li>
+                                    <a href="">&raquo;</a>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li>
+                                    <a href="/employes?page=${nextPage}&size=${sizeActuel}&sortProperty=${sortPropertyActuel}&sortDirection=${sortDirectionActuel}">
+                                        &raquo;
+                                    </a>
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
                     </ul>
                 </div>
             </div>
