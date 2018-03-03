@@ -91,7 +91,7 @@
         </form>
         <div class="col-lg-6">
             <input form="saveForm" class="btn btn-primary" type="submit" value="Enregistrer"/>
-                <a href="/employes/${employe.id}" class="btn btn-danger">Supprimer</a>
+                <a href="/employes/${employe.id}/delete" class="btn btn-danger">Supprimer</a>
         </div>
         <div class="col-lg-6">
              <% if(emp instanceof Manager && emp.getId() != null) { %>
