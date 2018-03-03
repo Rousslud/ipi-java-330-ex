@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ipiecoles.java.java330.model.Employe;
 import com.ipiecoles.java.java330.service.EmployeService;
@@ -26,5 +27,16 @@ public class EmployeController {
 		model.put("employe", employe);
 		return "employes/detail";
 	}
+	
+	 @RequestMapping (
+			 value = "",
+			 method = RequestMethod.GET
+			 )
+			 
+	public String rechercheMatricule(@RequestParam("matricule") String matricule, Map<String,Object> model) {
+		 Employe employe = employeService.findMyMatricule(matricule);
+		 model.put("employe", employe);
+		 return "employes/detail";
+		}
 
 }
