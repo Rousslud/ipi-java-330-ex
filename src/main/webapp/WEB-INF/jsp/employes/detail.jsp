@@ -1,7 +1,16 @@
+<%@ page import="com.ipiecoles.java.java330.model.Commercial" %>
+<%@ page import="com.ipiecoles.java.java330.model.Employe" %>
+<%@ page import="com.ipiecoles.java.java330.model.Technicien" %>
+<%@ page import="com.ipiecoles.java.java330.model.Manager" %>
+
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file ="../tags/header.jsp" %>
+
+<% Employe emp = (Employe)pageContext.findAttribute("employe"); %>
+
 <div class="container">
-    <h2>Détail du <% com.ipiecoles.java.java330.model.Employe emp = (com.ipiecoles.java.java330.model.Employe)pageContext.findAttribute("employe");out.println(emp.getClassName() + " " + emp.getMatricule());%></h2>
+
+    <h2>Détail du <% out.println(emp.getClassName() + " " + emp.getMatricule());%></h2>
 
     <div class="row">
         <form id="saveForm" action="" method="post">
@@ -37,7 +46,7 @@
                 <label class="form-control-label" for="nom">Date d'embauche</label>
                 <input type="text" value=${employe.dateEmbauche} class="form-control" name="dateEmbauche" id="dateEmbauche">
 
-                <p>Si l'employé est un commercial</p>
+               	<% if(emp instanceof Commercial) { %>
                 <label class="form-control-label" for="performance">Performance</label>
                 <input type="number" value="" class="form-control" name="performance" id="performance">
 
@@ -46,13 +55,16 @@
                     <input type="number" value="" class="form-control" name="caAnnuel" id="caAnnuel">
                     <span class="input-group-addon">€</span>
                 </div>
+                <% } %>
 
-                <p>Si l'employé est un technicien</p>
+                <% if(emp instanceof Technicien) { %>
                 <label class="form-control-label" for="grade">Grade</label>
                 <input type="number" value="" class="form-control" name="grade" id="grade">
+                <% } %>
 
 
-                <p>Si l'employé est un manager et que c'est une consultation</p>
+                <% if(emp instanceof Manager) { %>
+                <p>Si c'est une consultation</p>
                 <label class="form-control-label" for="performance">Equipe</label>
                 <div class="row">
                     <div class="col-lg-10">
@@ -66,6 +78,7 @@
                         </div>
                     </div>
                 </div>
+                <% } %>
             </div>
         </div>
         </form>
@@ -74,7 +87,8 @@
                 <a href="" class="btn btn-danger">Supprimer</a>
         </div>
         <div class="col-lg-6">
-            <p>Si l'employé est un manager et que c'est une consultation</p>
+            <% if(emp instanceof Manager) { %>
+            <p>Si c'est une consultation</p>
             <form action="" method="get">
                 <div class="col-lg-10">
                     <input type="text" name="matricule" value="" placeholder="Ajouter un technicien avec le matricule..." class="form-control">
@@ -83,7 +97,9 @@
                     <button type="submit" class="btn-success list-group-item list-group-item-action"><span class="glyphicon glyphicon-plus"></span></button>
                 </div>
             </form>
-            <p>Si l'employé est un technicien et que c'est une consultation</p>
+            <% } %>
+            <% if(emp instanceof Technicien) { %>
+            <p>Si c'est une consultation</p>
                 <div class="row">
                     <p>Si il a un manager</p>
                     <div class="col-lg-12">
@@ -110,6 +126,7 @@
                     </div>
                     </form>
                 </div>
+                <% } %>
         </div>
     </div>
 </div>
