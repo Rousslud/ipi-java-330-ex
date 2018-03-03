@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" %>
 <div class="container">
     <h2>Détail du commercial/technicien/manager matricule</h2>
 
