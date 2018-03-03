@@ -16,7 +16,7 @@
     <h2>Détail du <% out.println(emp.getClassName() + " " + emp.getMatricule());%></h2>
 
     <div class="row">
-        <form id="saveForm" action="" method="post">
+        <form id="saveForm" action="/${emp.className.toLowerCase()}s/${emp.id}" method="post">
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="nom">Nom</label>
