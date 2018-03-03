@@ -2,6 +2,9 @@
 <%@ page import="com.ipiecoles.java.java330.model.Employe" %>
 <%@ page import="com.ipiecoles.java.java330.model.Technicien" %>
 <%@ page import="com.ipiecoles.java.java330.model.Manager" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.HashSet" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file ="../tags/header.jsp" %>
@@ -46,7 +49,7 @@
                 <label class="form-control-label" for="nom">Date d'embauche</label>
                 <input type="text" value=${employe.dateEmbauche} class="form-control" name="dateEmbauche" id="dateEmbauche">
 
-               	<% if(emp instanceof Commercial) { %>
+               	<% if(emp instanceof Manager) {%>
                 <label class="form-control-label" for="performance">Performance</label>
                 <input type="number" value="" class="form-control" name="performance" id="performance">
 
@@ -63,13 +66,17 @@
                 <% } %>
 
 
-                <% if(emp instanceof Manager) { %>
-                <p>Si c'est une consultation</p>
+                <% if(emp instanceof Manager && emp.getId() != null) {
+                    Set<Technicien> liste = new HashSet<>();
+                    liste = ((Manager) emp).getEquipe();%>
                 <label class="form-control-label" for="performance">Equipe</label>
                 <div class="row">
                     <div class="col-lg-10">
                         <ul class="list-group">
-                                <li class="list-group-item"><a href="">Prénom Nom <span class="badge pull-right">Matricule</span></a></li>
+                                <c:forEach var ="tech" items="${employe.equipe}">
+                                	<li class="list-group-item">
+                                	<a href="${tech.id}">${tech.prenom} ${tech.nom} <span class="badge pull-right">${tech.matricule}</span></a></li>
+                                </c:forEach>
                         </ul>
                     </div>
                     <div class="col-lg-2 text-center">
@@ -87,8 +94,7 @@
                 <a href="" class="btn btn-danger">Supprimer</a>
         </div>
         <div class="col-lg-6">
-            <% if(emp instanceof Manager) { %>
-            <p>Si c'est une consultation</p>
+             <% if(emp instanceof Manager && emp.getId() != null) { %>
             <form action="" method="get">
                 <div class="col-lg-10">
                     <input type="text" name="matricule" value="" placeholder="Ajouter un technicien avec le matricule..." class="form-control">
@@ -98,25 +104,25 @@
                 </div>
             </form>
             <% } %>
-            <% if(emp instanceof Technicien) { %>
-            <p>Si c'est une consultation</p>
+            <% if(emp instanceof Technicien && emp.getId() != null) { %>
                 <div class="row">
-                    <p>Si il a un manager</p>
+                    <% if (((Technicien) emp).getManager() != null) {
+                    Employe manag = ((Technicien) emp).getManager();%>
                     <div class="col-lg-12">
                         <label class="form-control-label">Manager</label>
                     </div>
                     <div class="col-lg-10">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <a href="">Prénom Nom
-                                    <span class="badge pull-right">Matricule</span></a>
+                                <a href="/employes/<% out.println(manag.getId());%>"><%out.println(manag.getPrenom() + " " + manag.getNom());%>
+                                <span class="badge pull-right"><% out.println(manag.getMatricule()); %></span></a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-2">
                         <li class="list-group-item"><a href=""><span class="glyphicon glyphicon-remove"></span></a></li>
                     </div>
-                    <p>Sinon</p>
+                    <% } else { %>
                     <form action="" method="get">
                     <div class="col-lg-10">
                         <input type="text" name="matricule" value="" placeholder="Ajouter un manager avec le matricule..." class="form-control">
@@ -125,6 +131,7 @@
                         <button type="submit" class="btn-success list-group-item list-group-item-action"><span class="glyphicon glyphicon-plus"></span></button>
                     </div>
                     </form>
+                    <% } %>
                 </div>
                 <% } %>
         </div>
