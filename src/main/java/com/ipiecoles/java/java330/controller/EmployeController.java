@@ -2,6 +2,7 @@ package com.ipiecoles.java.java330.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,10 +17,10 @@ public class EmployeController {
 	private EmployeService employeService;
 	
 	@RequestMapping(
-			value="/5",
+			value="/{id}",
 			method=RequestMethod.GET)
-	public String detailEmploye() {
-		Employe employe = employeService.findById((long)5);
+	public String detailEmploye(@PathVariable(value="id") Long id) {
+		Employe employe = employeService.findById(id);
 		return "employes/detail";
 	}
 
