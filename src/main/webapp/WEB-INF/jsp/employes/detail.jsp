@@ -9,31 +9,32 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ include file ="../tags/header.jsp" %>
 
-<% Employe emp = (Employe)pageContext.findAttribute("employe"); %>
+<% Employe emp = (Employe)pageContext.findAttribute("employe");
+Boolean idIsNull = (emp.getId() == null);%>
 
 <div class="container">
 
     <h2>Détail du <% out.println(emp.getClassName() + " " + emp.getMatricule());%></h2>
 
     <div class="row">
-        <form id="saveForm" action="/<%=emp.getClassName().toLowerCase() + "s"%>/<%=emp.getId() == null ? "save" : emp.getId() %>" method="post">
+        <form id="saveForm" action="/<%=emp.getClassName().toLowerCase() + "s"%>/<%=idIsNull ? "" : emp.getId() %>" method="post">
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="nom">Nom</label>
-                <input type="text" value=${employe.nom} class="form-control" name="nom" id="nom">
+                <input type="text" value="${employe.nom}" class="form-control" name="nom" id="nom">
 
                 <label class="form-control-label" for="prenom">Prénom</label>
-                <input type="text" value=${employe.prenom} class="form-control" name="prenom" id="prenom">
+                <input type="text" value="${employe.prenom}" class="form-control" name="prenom" id="prenom">
 
                 <label class="form-control-label" for="matricule">Matricule</label>
-                <input type="text" value=${employe.matricule} class="form-control" name="matricule" id="matricule">
+                <input type="text" value="${employe.matricule}" class="form-control" name="matricule" id="matricule">
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="nom">Salaire</label>
                 <div class="input-group">
-                    <input type="number" value=${employe.salaire} class="form-control" name="salaire" id="salaire">
+                    <input type="number" value="${employe.salaire}" class="form-control" name="salaire" id="salaire">
                     <span class="input-group-addon">€</span>
                 </div>
 
@@ -47,7 +48,7 @@
 
 
                 <label class="form-control-label" for="nom">Date d'embauche</label>
-                 <input type="text" value=${employe.dateEmbauche.toString("dd/MM/YYYY")} class="form-control" name="dateEmbauche" id="dateEmbauche">
+                 <input type="text" value="${employe.dateEmbauche.toString("dd/MM/YYYY")}" class="form-control" name="dateEmbauche" id="dateEmbauche">
 
                	<% if(emp instanceof Manager) {%>
                 <label class="form-control-label" for="performance">Performance</label>
@@ -91,7 +92,8 @@
         </form>
         <div class="col-lg-6">
             <input form="saveForm" class="btn btn-primary" type="submit" value="Enregistrer"/>
-                <a href="/employes/${employe.id}/delete" class="btn btn-danger">Supprimer</a>
+               <a href="<%=idIsNull ? "/" :
+                "/employes/" + emp.getId() + "/delete"%>" class="btn btn-danger"><%= idIsNull? "Annuler" : "Supprimer"%></a>
         </div>
         <div class="col-lg-6">
              <% if(emp instanceof Manager && emp.getId() != null) { %>

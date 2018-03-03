@@ -91,11 +91,8 @@ public class EmployeController {
 	    		)
 	    	
 	    public String nouveauCommercial(Map<String, Object> model) {
-	    	Commercial employe = new Commercial();
-	    	//on veut pouvoir mettre le matricule adapté
-	    	//employe.setMatricule();
-	    	model.put("employe", employe);
-	    	return "/employes/";
+	    	model.put("employe", new Commercial());
+	    	return "/employes/detail";
 	    	}
 
 }

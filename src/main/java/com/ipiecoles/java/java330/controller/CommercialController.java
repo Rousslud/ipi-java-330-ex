@@ -32,5 +32,17 @@ public class CommercialController {
     	model.put("employe", employe);
     	return new RedirectView("/employes/" + id);
     }
+    
+    @RequestMapping(
+    		value = "",
+    		method = RequestMethod.POST,
+    		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
+    		)
+    public RedirectView creation(Commercial employe, Map<String, Object> model, RedirectAttributes attributes){
+    	employe = this.commercialService.creerEmploye(employe);
+    	model.put("employe", employe);
+    	attributes.addAttribute("success", "Création du commercial réussie");
+    	return new RedirectView("/employes/" + employe.getId());
+    		    }
    
 }
