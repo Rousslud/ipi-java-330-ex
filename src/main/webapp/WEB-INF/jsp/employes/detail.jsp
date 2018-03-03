@@ -38,13 +38,14 @@ Boolean idIsNull = (emp.getId() == null);%>
                     <span class="input-group-addon">€</span>
                 </div>
 
-                <p>Si consultation employé existant on affiche la prime</p>
+                <% if(!idIsNull) {%>
 
                 <label class="form-control-label" for="nom">Prime Annuelle</label>
                 <div class="input-group">
                    <input type="text" value="${employe.primeAnnuelle}" class="form-control" name="primeAnnuelle" id="primeAnnuelle">
                     <span class="input-group-addon">€</span>
                 </div>
+                <%}%>
 
 
                 <label class="form-control-label" for="nom">Date d'embauche</label>

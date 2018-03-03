@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.ipiecoles.java.java330.model.Commercial;
 import com.ipiecoles.java.java330.model.Employe;
+import com.ipiecoles.java.java330.model.Technicien;
 import com.ipiecoles.java.java330.service.EmployeService;
 
 @Controller
@@ -92,6 +93,15 @@ public class EmployeController {
 	    	
 	    public String nouveauCommercial(Map<String, Object> model) {
 	    	model.put("employe", new Commercial());
+	    	return "/employes/detail";
+	    	}
+	    
+	    @RequestMapping(
+	    		value = "/new/technicien",
+	    		method = RequestMethod.GET
+	    		)
+	    public String nouveauTechnicien(Map<String, Object> model) {
+	    	model.put("employe", new Technicien());
 	    	return "/employes/detail";
 	    	}
 

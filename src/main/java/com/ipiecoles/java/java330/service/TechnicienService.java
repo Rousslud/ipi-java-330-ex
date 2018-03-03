@@ -45,4 +45,8 @@ public class TechnicienService {
     public Technicien updateEmploye(Long id, Technicien employe) {
     	return technicienRepository.save(employe);
     	}
+    
+    public Technicien creerEmploye(Technicien e) {
+    	return technicienRepository.save(e);
+    	}
 }
