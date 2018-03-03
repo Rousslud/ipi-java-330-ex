@@ -1,26 +1,27 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file ="../tags/header.jsp" %>
 <div class="container">
-    <h2>Détail du commercial/technicien/manager matricule</h2>
+    <h2>Détail du <% com.ipiecoles.java.java330.model.Employe emp = (com.ipiecoles.java.java330.model.Employe)pageContext.findAttribute("employe");out.println(emp.getClassName() + " " + emp.getMatricule());%></h2>
 
     <div class="row">
         <form id="saveForm" action="" method="post">
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="nom">Nom</label>
-                <input type="text" value="Nom" class="form-control" name="nom" id="nom">
+                <input type="text" value=${employe.nom} class="form-control" name="nom" id="nom">
 
                 <label class="form-control-label" for="prenom">Prénom</label>
-                <input type="text" value="Prénom" class="form-control" name="prenom" id="prenom">
+                <input type="text" value=${employe.prenom} class="form-control" name="prenom" id="prenom">
 
                 <label class="form-control-label" for="matricule">Matricule</label>
-                <input type="text" value="Matricule" class="form-control" name="matricule" id="matricule">
+                <input type="text" value=${employe.matricule} class="form-control" name="matricule" id="matricule">
             </div>
         </div>
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="nom">Salaire</label>
                 <div class="input-group">
-                    <input type="number" value="Salaire" class="form-control" name="salaire" id="salaire">
+                    <input type="number" value=${employe.salaire} class="form-control" name="salaire" id="salaire">
                     <span class="input-group-addon">€</span>
                 </div>
 
@@ -28,13 +29,13 @@
 
                 <label class="form-control-label" for="nom">Prime Annuelle</label>
                 <div class="input-group">
-                    <input type="text" value="Prime annuelle" class="form-control" name="primeAnnuelle" id="primeAnnuelle">
+                    <input type="text" value=${employe.primeAnnuelle} class="form-control" name="primeAnnuelle" id="primeAnnuelle">
                     <span class="input-group-addon">€</span>
                 </div>
 
 
                 <label class="form-control-label" for="nom">Date d'embauche</label>
-                <input type="text" value="Date d'embauche" class="form-control" name="dateEmbauche" id="dateEmbauche">
+                <input type="text" value=${employe.dateEmbauche} class="form-control" name="dateEmbauche" id="dateEmbauche">
 
                 <p>Si l'employé est un commercial</p>
                 <label class="form-control-label" for="performance">Performance</label>
@@ -112,3 +113,4 @@
         </div>
     </div>
 </div>
+<%@ include file ="../tags/footer.jsp" %>
