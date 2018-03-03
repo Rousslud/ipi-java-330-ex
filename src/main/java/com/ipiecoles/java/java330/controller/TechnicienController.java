@@ -63,4 +63,18 @@ public class TechnicienController {
     	model.put("employe", technicien);
     	return new RedirectView("/employes/" + id);
     		}
+    
+
+    @RequestMapping(
+		value = "/{idTechnicien}/manager/remove",
+		method = RequestMethod.GET
+		)
+    public RedirectView removeManager(@PathVariable(value = "idTechnicien") Long id,
+    		Map<String, Object> model) {
+    	Technicien technicien = (Technicien) employeService.findById(id);
+    	technicien.setManager(null);
+    	technicien = employeService.updateEmploye(id,technicien);
+    	model.put("employe", technicien);
+    	return new RedirectView("/employes/" + id);
+    }
 }
