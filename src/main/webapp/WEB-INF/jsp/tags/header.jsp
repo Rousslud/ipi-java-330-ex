@@ -35,7 +35,7 @@
 
 <% if (request.getParameter("success") != null) { %>
 <div class = "alert alert-success alert-dismissible" role="alert">
-    <button type = "button" class = "close" data-dismiss="alert" aria-labe="Close">
+    <button type = "button" class = "close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
     <%=request.getParameter("success")%><br>

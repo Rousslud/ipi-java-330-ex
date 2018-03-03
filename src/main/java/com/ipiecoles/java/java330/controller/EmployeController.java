@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.ipiecoles.java.java330.model.Commercial;
 import com.ipiecoles.java.java330.model.Employe;
 import com.ipiecoles.java.java330.service.EmployeService;
 
@@ -83,5 +84,18 @@ public class EmployeController {
     
             return new RedirectView("/employes");
         }
+	    
+	    @RequestMapping(
+	    		value = "/new/commercial",
+	    		method = RequestMethod.GET
+	    		)
+	    	
+	    public String nouveauCommercial(Map<String, Object> model) {
+	    	Commercial employe = new Commercial();
+	    	//on veut pouvoir mettre le matricule adapté
+	    	//employe.setMatricule();
+	    	model.put("employe", employe);
+	    	return "/employes/";
+	    	}
 
 }
