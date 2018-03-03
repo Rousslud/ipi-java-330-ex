@@ -22,6 +22,7 @@ public class TechnicienController {
 
     @Autowired
     TechnicienService technicienService;
+    @Autowired
     EmployeService employeService;
 
     @RequestMapping(
@@ -50,13 +51,16 @@ public class TechnicienController {
     	}
     		
     @RequestMapping(
-    		value = "/{idTechnicien}/manager/add")
-    public String addManager(@PathVariable(name = "idTechnicien") Long id, @RequestParam(name = "matricule") String matricule, Map<String, Object> model) {
+    		value = "/{idTechnicien}/manager/add",
+    		method = RequestMethod.GET
+    		)
+    public RedirectView addManager(@PathVariable(value = "idTechnicien") Long id, @RequestParam(name = "matricule") String matricule,
+                                  Map<String, Object> model) {
     	Technicien technicien = (Technicien) employeService.findById(id);
     	Manager manager = (Manager) employeService.findMyMatricule(matricule);
     	technicien.setManager(manager);
     	technicien = employeService.updateEmploye(id,technicien);
     	model.put("employe", technicien);
-    	return "/employes/detail";
+    	return new RedirectView("/employes/" + id);
     		}
 }

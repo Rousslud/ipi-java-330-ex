@@ -126,7 +126,7 @@ Boolean idIsNull = (emp.getId() == null);%>
                         <li class="list-group-item"><a href=""><span class="glyphicon glyphicon-remove"></span></a></li>
                     </div>
                     <% } else { %>
-                    <form action="" method="get">
+                    <form action="/techniciens/${employe.id}/manager/add" method="get">
                     <div class="col-lg-10">
                         <input type="text" name="matricule" value="" placeholder="Ajouter un manager avec le matricule..." class="form-control">
                     </div>
