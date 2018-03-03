@@ -63,7 +63,7 @@ Boolean idIsNull = (emp.getId() == null);%>
 
                 <% if(emp instanceof Technicien) { %>
                 <label class="form-control-label" for="grade">Grade</label>
-                <input type="number" value="" class="form-control" name="grade" id="grade">
+                <input type="number" value="${employe.grade}" class="form-control" name="grade" id="grade">
                 <% } %>
 
 
@@ -96,7 +96,7 @@ Boolean idIsNull = (emp.getId() == null);%>
                 "/employes/" + emp.getId() + "/delete"%>" class="btn btn-danger"><%= idIsNull? "Annuler" : "Supprimer"%></a>
         </div>
         <div class="col-lg-6">
-             <% if(emp instanceof Manager && emp.getId() != null) { %>
+             <% if(emp instanceof Manager && !idIsNull) { %>
             <form action="" method="get">
                 <div class="col-lg-10">
                     <input type="text" name="matricule" value="" placeholder="Ajouter un technicien avec le matricule..." class="form-control">
@@ -106,7 +106,7 @@ Boolean idIsNull = (emp.getId() == null);%>
                 </div>
             </form>
             <% } %>
-            <% if(emp instanceof Technicien && emp.getId() != null) { %>
+            <% if(emp instanceof Technicien && !idIsNull) { %>
                 <div class="row">
                     <% if (((Technicien) emp).getManager() != null) {
                     Employe manag = ((Technicien) emp).getManager();%>
