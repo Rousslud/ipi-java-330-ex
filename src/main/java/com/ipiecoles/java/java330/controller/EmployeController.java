@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.ipiecoles.java.java330.model.Employe;
 import com.ipiecoles.java.java330.service.EmployeService;
@@ -66,5 +68,20 @@ public class EmployeController {
 		 model.put("previousPage", page-1);
 		 return "employes/liste";
 		 }
+	 
+	    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+        public RedirectView supprimeEmploye(@PathVariable(value = "id") Long id, RedirectAttributes attributes) {
+            employeService.deleteEmploye(id);
+    
+            //on initialise des valeurs nécessaires pour appeler la méthode afficheListeEmployes
+            attributes.addAttribute("page", 0);
+            attributes.addAttribute("size", 10);
+            attributes.addAttribute("sortingProperty", "matricule");
+            attributes.addAttribute("sortDirection", "ASC");
+            //message qui sera affichée dans le header
+            attributes.addAttribute("message", "suppression réussie");
+    
+            return new RedirectView("/employes");
+        }
 
 }
