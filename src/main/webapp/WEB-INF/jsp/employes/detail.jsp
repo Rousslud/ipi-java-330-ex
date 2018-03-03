@@ -16,7 +16,7 @@
     <h2>Détail du <% out.println(emp.getClassName() + " " + emp.getMatricule());%></h2>
 
     <div class="row">
-        <form id="saveForm" action="/${emp.className.toLowerCase()}s/${emp.id}" method="post">
+        <form id="saveForm" action="/<%=emp.getClassName().toLowerCase() + "s"%>/<%=emp.getId() == null ? "save" : emp.getId() %>" method="post">
         <div class="col-lg-6">
             <div class="form-group">
                 <label class="form-control-label" for="nom">Nom</label>
@@ -41,21 +41,21 @@
 
                 <label class="form-control-label" for="nom">Prime Annuelle</label>
                 <div class="input-group">
-                    <input type="text" value=${employe.primeAnnuelle} class="form-control" name="primeAnnuelle" id="primeAnnuelle">
+                   <input type="text" value="${employe.primeAnnuelle}" class="form-control" name="primeAnnuelle" id="primeAnnuelle">
                     <span class="input-group-addon">€</span>
                 </div>
 
 
                 <label class="form-control-label" for="nom">Date d'embauche</label>
-                <input type="text" value=${employe.dateEmbauche} class="form-control" name="dateEmbauche" id="dateEmbauche">
+                 <input type="text" value=${employe.dateEmbauche.toString("dd/MM/YYYY")} class="form-control" name="dateEmbauche" id="dateEmbauche">
 
                	<% if(emp instanceof Manager) {%>
                 <label class="form-control-label" for="performance">Performance</label>
-                <input type="number" value="" class="form-control" name="performance" id="performance">
+                <input type="number" value="${employe.performance}" class="form-control" name="performance" id="performance">
 
                 <label class="form-control-label" for="caAnnuel">CA Annuel</label>
                 <div class="input-group">
-                    <input type="number" value="" class="form-control" name="caAnnuel" id="caAnnuel">
+                    <input type="number" value="${employe.caAnnuel}" class="form-control" name="caAnnuel" id="caAnnuel">
                     <span class="input-group-addon">€</span>
                 </div>
                 <% } %>

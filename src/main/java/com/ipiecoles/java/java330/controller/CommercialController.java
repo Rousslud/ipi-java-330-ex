@@ -8,14 +8,13 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/commercial")
+@RequestMapping("/commercials")
 public class CommercialController {
 
     @Autowired
@@ -24,15 +23,11 @@ public class CommercialController {
     @RequestMapping(
             value = "/{id}",
             method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
-            produces = MediaType.TEXT_HTML_VALUE
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
     )
-    public String enregistre(@RequestParam("id") Long id, @RequestBody MultiValueMap<String,String> map, Map<String,Object> model) {
-
-    	Commercial com = commercialService.findById(id);
-    	com.setSalaire(new Double(map.getFirst("salaire")));
-    	commercialService.updateEmploye(id,com);
-    	model.put("employe", com);
+    public String enregistre(@PathVariable("id") Long id, Commercial employe, Map<String, Object> model, RedirectAttributes attributes) {
+    	employe = this.commercialService.updateEmploye(id, employe);
+    	model.put("employe", employe);
     	return "employes/detail";
     }
 }
