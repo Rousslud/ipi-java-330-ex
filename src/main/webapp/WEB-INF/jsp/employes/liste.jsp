@@ -49,13 +49,25 @@
             <div class="row">
                 <div class="col-lg-6">
                     <p>
-                        Affichage des employés X à Y sur un total de Z</p>
+                        Affichage des employés ${start} à ${end} sur un total de ${total}</p>
                 </div>
                 <div class="col-lg-6">
                     <ul class="pagination">
-                        <li class= "disabled">&laquo;</li>
-                        <li><a href="#">Page X</a></li>
-                        <li><a href="">&raquo;</a></li>
+                        <li class= "disabled">
+                            <c:if test="${hasPrevious}">
+                                <a href="/employes?page=${previousPage}&size=${sizeActuel}&sortProperty=${sortPropertyActuel}&sortDirection=${sortDirectionActuel}">
+                                    &laquo;
+                                </a>
+                            </c:if>
+                        </li>
+                        <li><a href="#">Page ${pageActuel}</a></li>
+                        <li>
+                            <c:if test="${hasNext}">
+                                <a href="/employes?page=${nextPage}&size=${sizeActuel}&sortProperty=${sortPropertyActuel}&sortDirection=${sortDirectionActuel}">
+                                    &raquo;
+                                </a>
+                            </c:if>
+                        </li>
                     </ul>
                 </div>
             </div>

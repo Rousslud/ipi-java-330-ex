@@ -55,6 +55,15 @@ public class EmployeController {
 		 model.put("listePagination", pagin.getContent());
 		 model.put("hasNext", pagin.hasNext());
 		 model.put("hasPrevious", pagin.hasPrevious());
+		 model.put("start", page*size + 1);
+		 model.put("end", Math.min(page*size + size, pagin.getTotalElements()));
+		 model.put("total", pagin.getTotalElements());
+		 model.put("pageActuel", page + 1);
+		 model.put("sizeActuel", size);
+		 model.put("sortPropertyActuel", sortProperty);
+		 model.put("sortDirectionActuel", sortDirection);
+		 model.put("nextPage", page+1);
+		 model.put("previousPage", page-1);
 		 return "employes/liste";
 		 }
 
