@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
+<%@ include file ="../tags/header.jsp" %>
 <div class="container">
     <div class="row">
         <div class="col-lg-12">
-            <h1>Liste des employÃ©s</h1>
+            <h1>Liste des employés</h1>
             <div class="btn-group">
                 <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    Nouvel employÃ©
+                    Nouvel employé
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
@@ -24,7 +25,7 @@
                         Nom <a href=""><span class="glyphicon glyphicon-chevron-down"></span></a>
                     </th>
                     <th scope="col">
-                        <a href="">PrÃ©nom</a>
+                        <a href="">Prénom</a>
                     </th>
                     <th scope="col"></th>
                 </tr>
@@ -33,15 +34,15 @@
                     <tr>
                         <th scope="row">Matricule</th>
                         <td>Nom</td>
-                        <td>PrÃ©nom</td>
-                        <td><a href="">DÃ©tail</a></td>
+                        <td>Prénom</td>
+                        <td><a href="">Détail</a></td>
                     </tr>
                 </tbody>
             </table>
             <div class="row">
                 <div class="col-lg-6">
                     <p>
-                        Affichage des employÃ©s X Ã  Y sur un total de Z</p>
+                        Affichage des employés X à Y sur un total de Z</p>
                 </div>
                 <div class="col-lg-6">
                     <ul class="pagination">
@@ -54,3 +55,4 @@
         </div>
     </div>
 </div>
+<%@ include file ="../tags/footer.jsp" %>

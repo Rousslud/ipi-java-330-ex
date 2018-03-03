@@ -3,6 +3,7 @@ package com.ipiecoles.java.java330.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +31,28 @@ public class EmployeController {
 	
 	 @RequestMapping (
 			 value = "",
-			 method = RequestMethod.GET
-			 )
-			 
+			 method = RequestMethod.GET,
+			 params="matricule"
+			 )	 
 	public String rechercheMatricule(@RequestParam("matricule") String matricule, Map<String,Object> model) {
 		 Employe employe = employeService.findMyMatricule(matricule);
 		 model.put("employe", employe);
 		 return "employes/detail";
 		}
+	 
+	 @RequestMapping (
+			 value = "",
+			 method = RequestMethod.GET,
+			 params={"page", "size", "sortProperty", "sortDirection"}
+			 )	 
+	 public String afficheListeEmployes(Map<String,Object> model,
+			 @RequestParam("page") Integer page,
+			 @RequestParam("size") Integer size,
+			 @RequestParam("sortProperty") String sortProperty,
+			 @RequestParam("sortDirection") String sortDirections) {
+		 Page<Employe> pagin = employeService.findAllEmployes(page, size, sortProperty, sortDirections);
+		 model.put("pagination", pagin);
+		 return "employes/liste";
+		 }
 
 }
