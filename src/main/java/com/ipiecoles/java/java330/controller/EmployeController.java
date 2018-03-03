@@ -1,5 +1,7 @@
 package com.ipiecoles.java.java330.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,8 +21,9 @@ public class EmployeController {
 	@RequestMapping(
 			value="/{id}",
 			method=RequestMethod.GET)
-	public String detailEmploye(@PathVariable(value="id") Long id) {
+	public String detailEmploye(@PathVariable(value="id") Long id , Map<String,Object> model) {
 		Employe employe = employeService.findById(id);
+		model.put("employe", employe);
 		return "employes/detail";
 	}
 
