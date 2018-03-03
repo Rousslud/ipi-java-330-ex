@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.ipiecoles.java.java330.model.Commercial;
 import com.ipiecoles.java.java330.model.Employe;
+import com.ipiecoles.java.java330.model.Manager;
 import com.ipiecoles.java.java330.model.Technicien;
 import com.ipiecoles.java.java330.service.EmployeService;
 
@@ -38,10 +39,10 @@ public class EmployeController {
 			 method = RequestMethod.GET,
 			 params="matricule"
 			 )	 
-	public String rechercheMatricule(@RequestParam("matricule") String matricule, Map<String,Object> model) {
+	 public RedirectView rechercheMatricule(@RequestParam("matricule") String matricule, Map<String,Object> model) {
 		 Employe employe = employeService.findMyMatricule(matricule);
 		 model.put("employe", employe);
-		 return "employes/detail";
+		 return new RedirectView("/employes/" + employe.getId());
 		}
 	 
 	 @RequestMapping (
@@ -102,6 +103,15 @@ public class EmployeController {
 	    		)
 	    public String nouveauTechnicien(Map<String, Object> model) {
 	    	model.put("employe", new Technicien());
+	    	return "/employes/detail";
+	    	}
+	    
+	    @RequestMapping(
+	    		value = "/new/manager",
+	    		method = RequestMethod.GET
+	    		)
+	    public String nouveauManager(Map<String, Object> model) {
+	    	model.put("employe", new Manager());
 	    	return "/employes/detail";
 	    	}
 

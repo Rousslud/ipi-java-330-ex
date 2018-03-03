@@ -65,4 +65,8 @@ public class ManagerService {
     public Manager updateEmploye(Long id, Manager employe) {
     	return managerRepository.save(employe);
     	}
+    
+    public Manager creerEmploye(Manager e) {
+    	return managerRepository.save(e);
+    	}
 }

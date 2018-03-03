@@ -51,7 +51,7 @@ Boolean idIsNull = (emp.getId() == null);%>
                 <label class="form-control-label" for="nom">Date d'embauche</label>
                  <input type="text" value="${employe.dateEmbauche.toString("dd/MM/YYYY")}" class="form-control" name="dateEmbauche" id="dateEmbauche">
 
-               	<% if(emp instanceof Manager) {%>
+               	<% if(emp instanceof Commercial) {%>
                 <label class="form-control-label" for="performance">Performance</label>
                 <input type="number" value="${employe.performance}" class="form-control" name="performance" id="performance">
 

@@ -34,6 +34,18 @@ public class ManagerController {
 
         return new RedirectView("/employes/" + id);
     }
+    
+    @RequestMapping(
+    		value="",
+    		method=RequestMethod.POST,
+    		consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE
+    		)
+    public RedirectView creer(Map<String, Object> model, RedirectAttributes attributes, Manager employe) {
+    	employe = managerService.creerEmploye(employe);
+    	model.put("employe", employe);
+    	attributes.addAttribute("success", "Création d'un manager réussie");
+    	return new RedirectView("/employes/" + employe.getId());
+    	}
 
 
 }
